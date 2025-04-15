@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="w-full bg-[#000000] text-white sm:p-8">
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-[#000000] text-center md:justify-between">
-        <img src="../public/logo.png" alt="logo-ct" className="w-30" />
+        <img src="./logo.png" alt="logo" className="w-30" />
         <ul className="flex flex-wrap items-center gap-y-2 gap-x-4">
           <li>
             <Typography
