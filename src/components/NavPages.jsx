@@ -8,7 +8,7 @@ const [loading,setLoading]=useState(true);
 const {pageNo,setPageNo}=useContext(UserContext);
 
 const [poster, setPoster] = useState([]);
-const API="a6074cbd2fa69a37d41bffd5f926cfde";
+const API = import.meta.env.VITE_API;
 var link;
 if(category==="trending") link=`https://api.themoviedb.org/3/trending/${media_type}/week?api_key=${API}&language=hi-IN&region=IN&page=${pageNo}`
 else link=`https://api.themoviedb.org/3/${media_type}/${category}?api_key=${API}&language=hi-IN&region=IN&page=${pageNo}`

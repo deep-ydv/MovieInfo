@@ -1,3 +1,4 @@
+import { Flame, TrendingUp } from "lucide-react";
 import React, { useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +42,7 @@ const Navbar = () => {
         className="cursor-pointer min-w-[160px] w-[50%]"
         onClick={() => navigate("/")}
       >
-        <img className=" w-[35%] " src="./logo.png" alt="logo" />
+        <img className=" sm:w-[45%] md:w-[35%]" src="./logo.png" alt="logo" />
       </button>
 
       {/* Desktop Menu */}
@@ -60,12 +61,12 @@ const Navbar = () => {
         >
            Movies
         </button>
-        <div className={movieHover?"cursor-pointer flex flex-col gap-1 rounded-md  absolute z-1 w-[100px]  bg-[#000000] py-1 text-sm":"hidden"}>
+        <div className={movieHover?"cursor-pointer flex flex-col gap-1 rounded-md  absolute z-1 w-[100px]  bg-[#000000] px-2 py-1 text-sm":"hidden"}>
           <p onClick={()=>
             {setPageNo(1);
               navigate("/search")}} className="hover:bg-[#111122]">All </p>
-          <p onClick={()=>{setPageNo(1); navigate("/top-rated-movies")}} className="hover:bg-[#111122]">Top Rated </p>
-          <p onClick={()=>{setPageNo(1); navigate("/trending-movies")}} className="hover:bg-[#111122]">Trending </p>
+          <p onClick={()=>{setPageNo(1); navigate("/top-rated-movies")}} className="hover:bg-[#111122]  flex justify-center items-center gap-1">Top Rated <Flame className="w-4"/> </p>
+          <p onClick={()=>{setPageNo(1); navigate("/trending-movies")}} className="hover:bg-[#111122]  flex justify-center items-center gap-1">Trending <TrendingUp className="w-4"/></p>
           
         </div>
         </div>
@@ -78,8 +79,8 @@ const Navbar = () => {
         </button>
         <div className={tVHover?"cursor-pointer flex flex-col gap-1 rounded-md  absolute z-1 w-[100px]  bg-[#000000] py-1 text-sm":"hidden"}>
           <p onClick={()=>{setPageNo(1); navigate("/search")}} className="hover:bg-[#111122]">All </p>
-          <p onClick={()=>{setPageNo(1); navigate("/top-rated-shows")}} className="hover:bg-[#111122]">Top Rated</p>
-          <p onClick={()=>{setPageNo(1); navigate("/trending-shows")}} className="hover:bg-[#111122]">Popular</p>
+          <p onClick={()=>{setPageNo(1); navigate("/top-rated-shows")}} className="hover:bg-[#111122]  flex justify-center items-center gap-1">Top Rated <Flame className="w-4"/></p>
+          <p onClick={()=>{setPageNo(1); navigate("/trending-shows")}} className="hover:bg-[#111122]  flex justify-center items-center gap-1">Popular<TrendingUp className="w-4"/></p>
           
         </div>
         </div>

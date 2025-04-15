@@ -1,6 +1,9 @@
+import { Flame, TrendingUp } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import MovieCard from './MovieCard';
+import About from './About';
+
 
 const HomeCategories = ({category,name,media_type,navi}) => {
   
@@ -8,7 +11,7 @@ const HomeCategories = ({category,name,media_type,navi}) => {
 
   const navigate=useNavigate();
   
-  const API="a6074cbd2fa69a37d41bffd5f926cfde"
+  const API=import.meta.env.VITE_API
     
     var link;
   
@@ -73,7 +76,7 @@ const HomeCategories = ({category,name,media_type,navi}) => {
    
     <div className='border-red-300  w-full mb-0 md:mb-8' >
       <div className='w-full bg-[#111] flex justify-between px-4 py-2 rounded-lg my-4'>
-      <p className='text-sm sm:text-lg text-white  font-bold lg:text-xl '>{name}</p>
+      <p className='text-sm sm:text-lg text-white  font-bold lg:text-xl justify-center items-center flex gap-2'>{name}{name==="Top Rated Movies" || name==="Top Rated Series"?<Flame />:<TrendingUp/>}</p>
       <p onClick={()=>navigate(`${navi}`)} className='px-4 cursor-pointer font-semibold text-[16px] text-gray-400'>See More</p>
       </div>
       <div className='border-green-400  flex gap-4 md:gap-8 overflow-y-hidden scrollbar-hide overflow-x-auto '>
@@ -86,6 +89,7 @@ const HomeCategories = ({category,name,media_type,navi}) => {
         )
         })}
         </div>
+        
         
     </div>
   )

@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import UserContext from "./Context";
 import { motion } from "framer-motion";
-import { Clock, CalendarDays, DollarSign, Star,Library,Film,ListVideo } from "lucide-react";
+import { Clock, CalendarDays, DollarSign, Star,Library,Film,ArrowLeft} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 
 const ChatDetails = () => {
+
+  const navigate =useNavigate();
+
   const { details } = useContext(UserContext);
   const movie = details;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,6 +28,8 @@ window.scrollTo({top:0,behavior:'smooth'});
 
   return (
     <div className="w-full min-h-screen px-8 bg-black text-white relative overflow-hidden">
+
+      <div onClick={()=>navigate("/")} className="absolute top-4 z-50  opacity-[50%] cursor-pointer rounded-[50%] px-2 py-2 bg-gray-800"> <ArrowLeft className="cursor-pointer" /></div>
 
       {/* Backdrop as absolute background */}
       <div

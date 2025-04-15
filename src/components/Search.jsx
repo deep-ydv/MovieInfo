@@ -12,7 +12,7 @@ const Search = () => {
   
 
   //587412
-  const API = "a6074cbd2fa69a37d41bffd5f926cfde";
+  const API = import.meta.env.VITE_API;
 
   const fetching = async () => {
     try {
@@ -87,7 +87,7 @@ const Search = () => {
               value="tv"
               className={
                 isTVShows
-                  ? "w-[90px] text-sm font-semibold sm:w-[110px]  px-3 py-1 rounded-xl bg-[#242447] text-white cursor-pointer sm:font-bold"
+                  ? "w-[90px] text-sm font-semibold sm:w-[110px]  px-3 py-1 rounded-xl bg-[#2B7FFF] text-white cursor-pointer sm:font-bold"
                   : "w-[90px] sm:w-[100px]  px-2 py-1 rounded-xl bg-[#111] text-white cursor-pointer font-semibold"
               }
             >
@@ -98,7 +98,7 @@ const Search = () => {
               value="movie"
               className={
                 isMovies
-                  ? "w-[90px] text-sm font-semibold sm:w-[110px]  px-3 py-1 rounded-xl bg-[#242447] text-white cursor-pointer sm:font-bold"
+                  ? "w-[90px] text-sm font-semibold sm:w-[110px]  px-3 py-1 rounded-xl bg-[#2B7FFF] text-white cursor-pointer sm:font-bold"
                   : "w-[90px] sm:w-[100px] px-2 py-1 rounded-xl bg-[#111] text-white cursor-pointer font-semibold"
               }
             >
@@ -124,7 +124,7 @@ const Search = () => {
             />
             <button
               type="submit"
-              className="bg-[#242447] px-8 text-white rounded-tr-xl rounded-br-xl font-semibold text-lg"
+              className="bg-[#2B7FFF] px-8 text-white rounded-tr-xl rounded-br-xl font-semibold text-lg"
               onClick={handleSearchClick}
             >
               Search

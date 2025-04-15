@@ -5,6 +5,9 @@ import {Footer} from '../components/Footer'
 import { useContext } from 'react'
 import UserContext from '../components/Context'
 import { Spinner } from '@material-tailwind/react'
+import AboutSection from '../components/About'
+import FeatureCard from '../components/Feature'
+
 
 
 const Home = () => {
@@ -17,14 +20,16 @@ const Home = () => {
     
     <Backdrop/>
 
+
     <HomeCategories category="top_rated" navi="/top-rated-movies" name="Top Rated Movies" media_type="movie"/>
-    <HomeCategories category="trending" navi="/trending-movies" name="Top Trending Movies"  media_type="movie"/>
+    <HomeCategories category="trending" navi="/trending-movies" name="Trending Movies"  media_type="movie"/>
     {/* <HomeCategories category="upcoming" navi="/upcoming-movies"  name="Upcoming Movies" media_type="movie"/> */}
-    <HomeCategories category="top_rated" navi="/top-rated-shows" name="Top Rated TV Shows" media_type="tv"/>
-    <HomeCategories category="trending" navi="/trending-shows" name="Top Trending TV Shows" media_type="tv"/>
+    <FeatureCard/>
+    <HomeCategories category="top_rated" navi="/top-rated-shows" name="Top Rated Series" media_type="tv"/>
+    <HomeCategories category="trending" navi="/trending-shows" name="Popular Series" media_type="tv"/>
     {/* <TopRatedMovies category="upcoming" name="Upcoming TV Shows" media_type="tv"/> */}
     {/* <Footer/> */}
-    
+    <AboutSection/>
     </div>
   )
 }

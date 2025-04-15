@@ -4,7 +4,7 @@ import UserContext from './Context';
 
 const MovieCard = ({image,title,rating,release,media_id,media_type}) => {
   const {favCollection,setFavCollection,favId,setFavId,watchListCollection,setWatchListCollection,watchId,setWatchId} = useContext(UserContext);
-  const { id } = useParams(); 
+  
 
   const navigate=useNavigate();
   const {details,setDetails}=useContext(UserContext);
@@ -75,7 +75,7 @@ const MovieCard = ({image,title,rating,release,media_id,media_type}) => {
       }
    
   }
-  const API="a6074cbd2fa69a37d41bffd5f926cfde";
+  const API = import.meta.env.VITE_API;
   const handleImageClick=async()=>{
     console.log("forDetail",media_id);  
     
@@ -147,7 +147,7 @@ const MovieCard = ({image,title,rating,release,media_id,media_type}) => {
 
        setDetails(allDataObj);
     }
-      navigate(`/detail/${media_id}`);
+      navigate(`/detail`);
     } catch (error) {
       console.log("error in MovieCard ImageClick",error);
     }

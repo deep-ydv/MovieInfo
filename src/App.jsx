@@ -79,7 +79,7 @@ const MainApp = () => {
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/detail/:id" element={<ChatDetails />} />
+        <Route path="/detail" element={<ChatDetails />} />
       </Routes>
 
       <Footer />

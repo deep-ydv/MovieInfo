@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import UserContext from "./Context";
 
 const Backdrop = () => {
@@ -9,9 +10,8 @@ const Backdrop = () => {
   const [currentCast, setCurrentCast] = useState([]);
   const [nowPlayingTrailers, setNowPlayingTrailers] = useState([]);
 
-  
 
-  const API = "a6074cbd2fa69a37d41bffd5f926cfde";
+  const API = import.meta.env.VITE_API;
 
   const movieIds=[1257960,1147546,1370264,627336,1120762,1198208,927342,1062715,912649,1143407];
   // const movieIds = [
@@ -113,6 +113,64 @@ const Backdrop = () => {
       // }
   }
 
+  const navigate=useNavigate();
+  const {setDetails}=useContext(UserContext);
+  const media_id=movieIds[currentIndex];
+  const handleMoreDetails=async()=>{
+    // console.log("forDetail",media_id);  
+    
+    try {
+      const res=await fetch(`https://api.themoviedb.org/3/movie/${media_id}?api_key=${API}`);
+      const data=await res.json();
+      console.log(data);
+
+      const platform=await fetch(`https://api.themoviedb.org/3/movie/${media_id}/watch/providers?api_key=${API}`);
+      const platformData=await platform.json();
+      // console.log(platformData);
+      //  console.log(platformData.results.IN.buy);
+      // console.log(platformData.results.IN.flatrate);
+      // console.log(platformData.results.IN.rent);
+
+      const cast=await fetch(`https://api.themoviedb.org/3/movie/${media_id}/credits?api_key=${API}`);
+      const castData=await cast.json();
+      // console.log(castData);
+
+      const review=await fetch(`https://api.themoviedb.org/3/movie/${media_id}/reviews?api_key=${API}`)
+      const reviewData=await review.json();
+      // console.log(reviewData);
+      
+
+      
+      const allDataObj={
+        backdrop_path:data.backdrop_path,
+        budget:data.budget,
+        genres:data.genres,
+        title:data.title,
+        overview:data.overview,
+        poster_path:data.poster_path,
+        release_date:data.release_date,
+        revenue:data.revenue,
+        rating:data.vote_average,
+        runtime:data.runtime,
+         // Safe access with fallback to empty arrays
+        buy: platformData?.results?.IN?.buy || [],
+        flatrate: platformData?.results?.IN?.flatrate || [],
+        rent: platformData?.results?.IN?.rent || [],
+
+        cast: castData?.cast || [],
+        reviews: reviewData || {},
+       
+      }
+      setDetails(allDataObj);
+      // console.log(allDataObj);
+      navigate("/detail");
+    }
+    catch(error){
+      console.log("Error in BackDrop MoreDetails",error);
+    }
+  }
+
+
   if (loading) return <div className="text-white">Loading...</div>;
 
   return (
@@ -160,7 +218,7 @@ const Backdrop = () => {
 
         <div className="flex gap-1 mt-2 lg:mt-4 ">
           {/*  rounded-md px-4 py-2 text-white border-none bg-black*/}
-          <button className="text-white w-[60px] cursor-pointer h-[17px] text-[8px] bg-gray-900  rounded-xl line-clamp-1 sm:w-[80px] sm:h-[20px] sm:text-[10px] lg:w-[120px] lg:h-[32px] lg:text-[14px]  hover:bg-gray-800">
+          <button onClick={handleMoreDetails} className="text-white w-[60px] cursor-pointer h-[17px] text-[8px] bg-gray-900  rounded-xl line-clamp-1 sm:w-[80px] sm:h-[20px] sm:text-[10px] lg:w-[120px] lg:h-[32px] lg:text-[14px]  hover:bg-gray-800">
             More Details
           </button>
           {/* rounded-md px-4 py-2 text-white border-none bg-blue-900 */}
