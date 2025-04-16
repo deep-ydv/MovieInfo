@@ -3,19 +3,116 @@ import UserContext from "./Context";
 import { motion } from "framer-motion";
 import { Clock, CalendarDays, DollarSign, Star,Library,Film,ArrowLeft} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {useParams} from 'react-router-dom'
+import Loader from "./Loader";
 
 
 const ChatDetails = () => {
 
   const navigate =useNavigate();
+  const [loading,setLoading]=useState(true);
+  const  {media_type,media_id}=useParams();
+  // console.log(media_id,media_type);
 
-  const { details } = useContext(UserContext);
-  const movie = details;
+  // const { details } = useContext(UserContext);
+  const [movie,setMovie]=useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+
+
+const API = import.meta.env.VITE_API;
+useEffect(() => {
+
+// console.log("Working");
+  const handleImageClick=async()=>{
+    // console.log("forDetail",media_id);  
+    
+    try {
+      const res=await fetch(`https://api.themoviedb.org/3/${media_type}/${media_id}?api_key=${API}`);
+      const data=await res.json();
+      // console.log(data);
+
+      const platform=await fetch(`https://api.themoviedb.org/3/${media_type}/${media_id}/watch/providers?api_key=${API}`);
+      const platformData=await platform.json();
+      // console.log(platformData);
+      //  console.log(platformData.results.IN.buy);
+      // console.log(platformData.results.IN.flatrate);
+      // console.log(platformData.results.IN.rent);
+
+      const cast=await fetch(`https://api.themoviedb.org/3/${media_type}/${media_id}/credits?api_key=${API}`);
+      const castData=await cast.json();
+      // console.log(castData);
+
+      const review=await fetch(`https://api.themoviedb.org/3/${media_type}/${media_id}/reviews?api_key=${API}`)
+      const reviewData=await review.json();
+      // console.log(reviewData);
+      
+
+      if(media_type==="movie"){
+      const allDataObj={
+        backdrop_path:data.backdrop_path,
+        budget:data.budget,
+        genres:data.genres,
+        title:data.title,
+        overview:data.overview,
+        poster_path:data.poster_path,
+        release_date:data.release_date,
+        revenue:data.revenue,
+        rating:data.vote_average,
+        runtime:data.runtime,
+         // Safe access with fallback to empty arrays
+        buy: platformData?.results?.IN?.buy || [],
+        flatrate: platformData?.results?.IN?.flatrate || [],
+        rent: platformData?.results?.IN?.rent || [],
+
+        cast: castData?.cast || [],
+        reviews: reviewData || {},
+       }
+
+       setMovie(allDataObj);
+    }
+    else if(media_type==="tv"){
+      const allDataObj={
+        backdrop_path:data.backdrop_path,
+        
+        genres:data.genres,
+        title:data.name,
+        overview:data.overview,
+        poster_path:data.poster_path,
+        release_date:data.first_air_date,
+        number_of_episodes:data.number_of_episodes,
+        number_of_seasons:data.number_of_seasons,
+        rating:data.vote_average,
+        
+         // Safe access with fallback to empty arrays
+        buy: platformData?.results?.IN?.buy || [],
+        flatrate: platformData?.results?.IN?.flatrate || [],
+        rent: platformData?.results?.IN?.rent || [],
+
+        cast: castData?.cast || [],
+        reviews: reviewData || {},
+       }
+
+       setMovie(allDataObj);
+    }
+    setLoading(false);
+      // navigate(`/detail`);
+    } catch (error) {
+      console.log("error in MovieCard ImageClick",error);
+    }
+    // console.log("Details",media_id);
+
+  }
+  handleImageClick()
+  // console.log(movie);
+}, [media_id,media_type])
+
 const carouselRef = useRef(null);
-const reviews = movie.reviews.results.slice(0, 10);
+
+const reviews =movie?.reviews?.results?.slice(0, 10) || [];
 
 useEffect(() => {
+  
   const interval = setInterval(() => {
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
   }, 5000); // 5 sec auto-slide
@@ -25,7 +122,8 @@ useEffect(() => {
 useEffect(() => {
 window.scrollTo({top:0,behavior:'smooth'});
 }, [])
-
+// console.log(movie);
+if(loading) return <div className="min-h-screen flex justify-center items-center w-full bg-[#000000]"><Loader/></div>
   return (
     <div className="w-full min-h-screen px-8 bg-black text-white relative overflow-hidden">
 
@@ -207,7 +305,10 @@ window.scrollTo({top:0,behavior:'smooth'});
         )}
       </div>
     </div>
+  
   );
+  
 };
+
 
 export default ChatDetails;

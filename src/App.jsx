@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, matchPath } from "react-router-dom";
 import Favorite from "./components/Favorite";
 import Home from "./Main/Home";
 import Search from "./components/Search";
@@ -63,7 +63,8 @@ const MainApp = () => {
   const location = useLocation();
 
   // Hide Navbar on "/detail"
-  const hideNavbar = location.pathname === "/detail";
+  const hideNavbar =  matchPath("/detail/:media_type/:media_id", location.pathname);
+  
 
   return (
     <>
@@ -79,7 +80,7 @@ const MainApp = () => {
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/detail" element={<ChatDetails />} />
+        <Route path="/detail/:media_type/:media_id" element={<ChatDetails />} />
       </Routes>
 
       <Footer />

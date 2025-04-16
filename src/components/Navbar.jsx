@@ -1,4 +1,4 @@
-import { Flame, TrendingUp } from "lucide-react";
+import { Flame, Search, TrendingUp } from "lucide-react";
 import React, { useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleNavClick=(e)=>{
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setMenuOpen(prev=>!prev);
     setPageNo(1);
     navigate(`/${e.target.value}`);
@@ -42,11 +42,11 @@ const Navbar = () => {
         className="cursor-pointer min-w-[160px] w-[50%]"
         onClick={() => navigate("/")}
       >
-        <img className=" sm:w-[45%] md:w-[35%]" src="./logo.png" alt="logo" />
+        <img className=" sm:w-[45%] md:w-[55%] lg:w-[35%]" src="https://res.cloudinary.com/dx4c0g5ao/image/upload/v1744830576/logo_usqrjd.png" alt="logo" />
       </button>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex w-[50%] px-4 items-center justify-between text-white text-sm md:text-md lg:text-lg font-semibold">
+      <div className=" border-white hidden md:flex w-[65%] px-4 items-center justify-between gap-4 text-white text-sm md:text-md lg:text-lg font-semibold">
       <button
           className="cursor-pointer hover:underline underline-offset-12 decoration-2 "
           onClick={() => navigate("/")}
@@ -98,12 +98,15 @@ const Navbar = () => {
         >
           Favorites
         </button>
-        
+        <button className="cursor-pointer sm:w-[20px] lg:w-[30px]  border-white overflow-hidden">
+        <Search className="hover:text-gray-400 w-[100%]" onClick={()=>navigate("/search")}/>
+        </button>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2  border-white justify-center items-center  md:hidden text-white text-2xl">
        
         {/* Hamburger Menu for Small Screens */}
+        <Search onClick={()=>navigate("/search")}/>
         <button
           className="md:hidden text-white text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}

@@ -4,9 +4,9 @@ import MovieCard from "./MovieCard";
 const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [moviePoster, setMoviePoster] = useState([]);
-  const [title, setTitle] = useState("kgf");
+  const [title, setTitle] = useState("");
   const [isTVShows, setIsTVShows] = useState(false);
-  const [isMovies, setIsMovies] = useState(false);
+  const [isMovies, setIsMovies] = useState(true);
   const [page, setPage] = useState(1);
   const [pageLength,setPageLength]=useState(1);
   
@@ -24,7 +24,7 @@ const Search = () => {
       const data = await res.json();
       // const detail=await fetch(`https://api.themoviedb.org/3/movie/587412?api_key=${API}&language=hi-IN`);
       // const det=await detail.json();
-      console.log(data);
+      // console.log(data);
       // console.log(data);
       // Method to remove NUll Data----------------
       const posterData = data.results
@@ -76,7 +76,7 @@ const Search = () => {
     <div
       className={`w-full min-h-screen flex flex-col items-center pt-10 bg-[#000000]`}
     >
-      <div className="h-[220px] w-[90%]  sm:h-[300px] md:h-[400px]  rounded-3xl   bg-[#111] ">
+      <div className="h-[220px] w-[90%]  sm:h-[300px] md:h-[400px]  rounded-3xl shadow-sm shadow-gray-900  bg-cover bg-center  bg-[#111] " style={{backgroundImage:'url("https://wallpapers.com/images/hd/dark-nature-1920-x-1080-background-lqtolhf1sfr3ve5s.jpg")'}}>
         <div className="w-full h-full  flex flex-col items-center justify-center rounded-3xl ">
           <p className="text-white text-[20px] w-[70%]  sm:text-[35px] md:text-[40px] xl:text-[60px] text-center mb-2 font-bold sm:w-[60%]">
             Discover Unlimited movies, and TV shows

@@ -1,4 +1,4 @@
-import { Flame, TrendingUp } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Flame, TrendingUp } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import MovieCard from './MovieCard';
@@ -62,9 +62,9 @@ const HomeCategories = ({category,name,media_type,navi}) => {
   };
   
   const scrollRight = () => {
-    console.log("first")
-    if (topRatedScroll.current) {
     // console.log("first")
+    if (topRatedScroll.current) {
+    console.log(topRatedScroll.current)
 
       // Scroll right by a specific amount (e.g., 300px)
       topRatedScroll.current.scrollBy({ left: 200, behavior: 'smooth' });
@@ -74,12 +74,22 @@ const HomeCategories = ({category,name,media_type,navi}) => {
 
   return (
    
-    <div className='border-red-300  w-full mb-0 md:mb-8' >
-      <div className='w-full bg-[#111] flex justify-between px-4 py-2 rounded-lg my-4'>
+    <div className='border-red-300  w-full mb-0 md:mb-8 relative' >
+      
+      
+
+
+      <div className='w-full bg-[#111]  flex justify-between px-4 py-2 rounded-lg my-4'>
+
       <p className='text-sm sm:text-lg text-white  font-bold lg:text-xl justify-center items-center flex gap-2'>{name}{name==="Top Rated Movies" || name==="Top Rated Series"?<Flame />:<TrendingUp/>}</p>
       <p onClick={()=>navigate(`${navi}`)} className='px-4 cursor-pointer font-semibold text-[16px] text-gray-400'>See More</p>
       </div>
-      <div className='border-green-400  flex gap-4 md:gap-8 overflow-y-hidden scrollbar-hide overflow-x-auto '>
+      <p  onClick={scrollLeft} className='hidden md:block cursor-pointer  absolute border-1 rounded-[50%] left-0 top-[50%] bg-[#111] z-100 text-xl text-white'><ChevronLeft/></p>
+      <p  onClick={scrollRight} className='hidden md:block cursor-pointer absolute border-1 rounded-[50%] right-0 top-[50%] bg-[#111] z-100 text-xl text-white'><ChevronRight/></p>
+      
+      <div ref={topRatedScroll} className='border-green-400   flex gap-4 md:gap-8 overflow-y-hidden scrollbar-hide overflow-x-auto '>
+      
+
       {trmData.map((m,idx)=>{
         return ( 
           <div className='flex-shrink-0'  key={idx}>

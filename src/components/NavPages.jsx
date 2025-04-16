@@ -1,6 +1,7 @@
 import { Spinner } from '@material-tailwind/react';
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from './Context';
+import Loader from './Loader';
 import MovieCard from './MovieCard';
 
 const NavPages = ({category,media_type,name}) => {
@@ -21,7 +22,7 @@ else link=`https://api.themoviedb.org/3/${media_type}/${category}?api_key=${API}
       .map((p)=>p);
       setPoster(data.results);
       setLoading(false);
-      console.log(data);
+      // console.log(data);
       
     } catch (error) {
       console.log("error in Nav Pages Fetching",error);
@@ -46,7 +47,7 @@ else link=`https://api.themoviedb.org/3/${media_type}/${category}?api_key=${API}
   // console.log(poster)
  
   return (
-    <>    { loading? (<div className='text-white text-xl h-screen bg-[#111] flex justify-center items-center'>Loading.......</div>) :
+    <>    { loading? (<div className='text-white text-xl h-screen bg-[#111] flex justify-center items-center'><Loader/></div>) :
     (
     <div className='w-full bg-[#000000]   px-4 flex flex-col  items-center '>    
     <div className='text-white text-3xl my-8 font-bold'>{name}</div>

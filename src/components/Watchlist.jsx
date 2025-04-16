@@ -10,7 +10,7 @@ const Watchlist = () => {
 
     <div className='w-full flex gap-4 justify-center flex-wrap  '>
     {watchListCollection.map((curr,idx)=>{
-      console.log(curr);
+      // console.log(curr);
       return <MovieCard key={idx} image={curr.image} media_type={curr.media_type}  title={curr.title}  rating={curr.rating}  release={curr.release} media_id={curr.media_id}/>
     })}
     </div>
