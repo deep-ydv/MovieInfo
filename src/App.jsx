@@ -7,7 +7,7 @@ import NavPages from "./components/NavPages";
 import Watchlist from "./components/Watchlist";
 import UserContext from "./components/Context";
 import { useEffect, useState } from "react";
-
+import { Analytics } from "@vercel/analytics/react"
 import { Footer } from "./components/Footer";
 import ChatDetails from "./components/ChatDetails";
 
@@ -53,6 +53,7 @@ const AppWrapper = () => {
     >
       <Router>
         <MainApp />
+        <Analytics/>
       </Router>
     </UserContext.Provider>
   );
