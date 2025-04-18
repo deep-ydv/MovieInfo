@@ -102,6 +102,17 @@ const Backdrop = () => {
 
   // console.log(movies[0].genres[0][0].name);
   // console.log(nowPlayingTrailers);
+
+
+  const handleTrailerClick=(currentIndex)=>{
+    // console.log(nowPlayingTrailers[idx]);
+    // console.log(currentIndex);
+    // console.log(nowPlayingTrailers[currentIndex]);
+      if(nowPlayingTrailers[currentIndex]!=="Not Available"){
+        const url=nowPlayingTrailers[currentIndex];
+        window.open(url,'_blank');
+      }
+    }
   
 
 
