@@ -1,12 +1,53 @@
-# React + Vite
+# 🎬 MovieInfo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MovieInfo** is a sleek and responsive web app that allows users to explore, search, and get detailed information about movies and TV series — all powered by the **TMDb API**.
 
-Currently, two official plugins are available:
+No ads. No distractions. Just movies and shows — clean and simple.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🔗 Live Demo
+👉 [movieinfo24.vercel.app](https://movieinfo24.vercel.app)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🎞️ **Now Playing** – See what’s currently in theatres
+- ⭐ **Top Rated** – Explore critically acclaimed titles
+- 📈 **Trending** – Stay up-to-date with daily/weekly trends
+- 🌍 **Popular Picks** – Discover what the world is watching
+- 🔎 **Powerful Search** – Instantly find any movie or TV show
+- 📚 **Detailed Info** – View cast, ratings, release date, plot, etc.
+- 📱 **Responsive Design** – Seamlessly works on all screen sizes
+
+---
+
+## 💡 Purpose
+
+To create a fast, clutter-free, and elegant platform for movie and TV discovery that is accessible to everyone — without requiring logins or subscriptions.
+
+---
+
+## 🛠️ Tech Stack
+
+| Part        | Technology       |
+|-------------|------------------|
+| Frontend    | React.js         |
+| Styling     | Tailwind CSS     |
+| Data Source | TMDb API         |
+| Hosting     | Vercel           |
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+<img src="./screenshots/m1.png" alt="Home Page" width="600"/>
+
+### 🔍 Search Page
+<img src="./screenshots/m3.png" alt="Search Page" width="600"/>
+
+### 🎬 Movie Details
+<img src="./screenshots/m2.png" alt="Details Page" width="600"/>
+
+
+---
